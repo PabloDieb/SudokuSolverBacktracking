@@ -1,54 +1,17 @@
 // Matriz com os valores do tabuleiro
-// const board =[
-//     [3, 0, 6, 5, 0, 8, 4, 0, 0],
-//     [5, 2, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 8, 7, 0, 0, 0, 0, 3, 1],
-//     [0, 0, 3, 0, 1, 0, 0, 8, 0],
-//     [9, 0, 0, 8, 6, 3, 0, 0, 5],
-//     [0, 5, 0, 0, 9, 0, 6, 0, 0],
-//     [1, 3, 0, 0, 0, 0, 2, 5, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 7, 4],
-//     [0, 0, 5, 2, 0, 6, 3, 0, 0]       
-//   ];
-
-//   const board2 =[
-//     [3, 0, 6, 5, 0, 8, 4, 0, 0],
-//     [5, 2, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 8, 7, 0, 0, 0, 0, 3, 1],
-//     [0, 0, 3, 0, 1, 0, 0, 8, 0],
-//     [9, 0, 0, 8, 6, 3, 0, 0, 5],
-//     [0, 5, 0, 0, 9, 0, 6, 0, 0],
-//     [1, 3, 0, 0, 0, 0, 2, 5, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 7, 4],
-//     [0, 0, 5, 2, 0, 6, 3, 0, 0]         
-//   ];
-
-const board =[
-    [0, 4, 5, 0, 9, 0, 0, 0, 1],
-    [9, 0, 0, 4, 0, 5, 7, 0, 0],
-    [7, 0, 0, 0, 6, 0, 0, 4, 0],
-    [8, 0, 0, 0, 3, 4, 0, 2, 0],
-    [0, 0, 0, 6, 0, 0, 0, 0, 0],
-    [0, 0, 4, 2, 7, 0, 6, 0, 0],
-    [1, 0, 6, 3, 0, 0, 0, 0, 7],
-    [0, 0, 2, 0, 0, 0, 0, 0, 0],
-    [3, 8, 0, 0, 4, 0, 0, 1, 0]       
-  ];
-
-  const board2 =[
-    [0, 4, 5, 0, 9, 0, 0, 0, 1],
-    [9, 0, 0, 4, 0, 5, 7, 0, 0],
-    [7, 0, 0, 0, 6, 0, 0, 4, 0],
-    [8, 0, 0, 0, 3, 4, 0, 2, 0],
-    [0, 0, 0, 6, 0, 0, 0, 0, 0],
-    [0, 0, 4, 2, 7, 0, 6, 0, 0],
-    [1, 0, 6, 3, 0, 0, 0, 0, 7],
-    [0, 0, 2, 0, 0, 0, 0, 0, 0],
-    [3, 8, 0, 0, 4, 0, 0, 1, 0]         
-  ];
-
+const board =
+[[0,8,0,0,0,0,0,5,0],
+[0,3,0,5,0,0,1,0,0],
+[2,1,5,4,6,7,3,8,9],
+[0,0,0,8,1,3,9,2,5],
+[5,2,3,7,9,4,0,1,8],
+[1,9,8,6,0,0,4,7,3],
+[9,6,0,3,0,0,0,4,0],
+[3,5,7,2,4,1,8,9,6],
+[8,4,0,9,0,6,0,3,0]];
+    
 //Faz uma cópia do array para preencher o tabuleiro 
-// const board2 = board;
+const board2 = board;
 
 //Colocar as bordas maiores do tabuleiro
 for(let i = 0; i < 9; i++){
@@ -121,6 +84,7 @@ function isSafe(n, row, col){
 
 //Essa função vai atribuir um valor entre 1 a 9 nas celulas que não tem valores atribuídos e verificar se não causará conflito, caso haja conflito ele fará o backtracking e mudará o valor da célula anterior para os resultados posteriores se adequarem
 function solve(){
+    
     let row = 0;
     let col = 0;
 
@@ -143,13 +107,15 @@ function solve(){
     return false;
 }
 
-solve();
-
 //Passagem dos valores resolvidos para o tabuleiro
 document.querySelector("#button2").addEventListener('click', function(){
+    let t0 = performance.now();
+    solve();
+    let t1= performance.now()
    for(let i=0; i<9; i++){
       for(let j = 0; j<9; j++){
          document.querySelector("#square"+i+j).innerHTML = board[i][j];
       }
    }
+   console.log('Time taken to execute add function:'+ (t1-t0) +' milliseconds');
 }, false);
